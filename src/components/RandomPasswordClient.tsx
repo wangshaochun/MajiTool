@@ -170,22 +170,7 @@ export default function RandomPasswordClient({
     <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
       <h1 className="text-3xl font-bold text-gray-800 mb-4">
         {translations.random_password_generator}
-      </h1>
-      
-      {/* SEO描述部分 */}
-      <div className="mb-8 p-4 bg-blue-50 rounded-lg">
-        <h2 className="text-lg font-semibold text-blue-800 mb-3">{translations.function_description}</h2>
-        <div className="space-y-2 text-sm text-blue-700">
-          <p><strong>使用文字：</strong>{translations.character_set_description}</p>
-          <p><strong>生成数：</strong>{translations.generation_count_description}</p>
-          <p><strong>パスワード長：</strong>{translations.password_length_description}</p>
-          <p><strong>含める文字：</strong>{translations.include_characters_description}</p>
-          <p><strong>除外する文字：</strong>{translations.exclude_characters_description}</p>
-          <p><strong>生成結果：</strong>{translations.generation_result_description}</p>
-          <p><strong>ダウンロード：</strong>{translations.download_description}</p>
-        </div>
-      </div>
-
+      </h1> 
       {/* 配置选项 */}
       <div className="space-y-6">
         {/* 生成数量 */}
@@ -372,6 +357,20 @@ export default function RandomPasswordClient({
           </div>
         </div>
       )}
+            
+      {/* SEO描述部分 */}
+      <div className="mb-8 p-4 bg-blue-50 rounded-lg mt-10">
+        <h2 className="text-lg font-semibold text-blue-800 mb-3">{translations.function_description}</h2>
+        <div className="space-y-2 text-sm text-blue-700">
+          <p><strong>使用文字：</strong>{translations.character_set_description}</p>
+          <p><strong>生成数：</strong>{translations.generation_count_description}</p>
+          <p><strong>パスワード長：</strong>{translations.password_length_description}</p>
+          <p><strong>含める文字：</strong>{translations.include_characters_description}</p>
+          <p><strong>除外する文字：</strong>{translations.exclude_characters_description}</p>
+          <p><strong>生成結果：</strong>{translations.generation_result_description}</p>
+          <p><strong>ダウンロード：</strong>{translations.download_description}</p>
+        </div>
+      </div>
     </div>
   );
 }

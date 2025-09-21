@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MajiTool
 
-## Getting Started
+## 概要
 
-First, run the development server:
+MajiToolは、日常生活や仕事で役立つ便利なツールを集めたWebアプリケーションです。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 主な機能
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- パーセント計算機
+- ランダムパスワード生成器
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+他にも今後さまざまなツールを追加予定です。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## サイトへのアクセス
 
-## Learn More
+サービスはこちらからご利用いただけます：
 
-To learn more about Next.js, take a look at the following resources:
+👉 [http://majitool.com/](http://majitool.com/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 利用方法
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. 上記のURLにアクセスします。
+2. 必要なツールを選択してご利用ください。
 
-## Deploy on Vercel
+ 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ライセンス
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+このプロジェクトはMITライセンスの下で公開されています。

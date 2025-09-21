@@ -6,12 +6,17 @@ import ja from "../../locales/ja.json";
 export default function Home() {
   const tools = [
     {
+      name: "百分比計算",
+      description: "パーセント・比率・割引・増減など多用途の計算ツール。",
+      link: "/percent-calc",
+      icon: "％",
+    },
+    {
       name: ja.random_password_generator,
       description: ja.random_password_description,
-      link: "/string/random-password",
+      link: "/random-password",
       icon: "🔒",
     },
-    // Add more tools here
   ];
 
   return (
