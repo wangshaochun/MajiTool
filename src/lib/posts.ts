@@ -1,16 +1,14 @@
 import { query } from "@/lib/db";
 
 export type PostListItem = {
-  id: number;
-  slug: string;
+  id: number; 
   title: string;
   excerpt: string | null;
   created_at: string;
 };
 
 export type PostDetail = {
-  id: number;
-  slug: string;
+  id: number; 
   title: string;
   excerpt: string | null;
   content_md: string;
@@ -20,46 +18,45 @@ export type PostDetail = {
 
 export async function getPosts(limit = 20, offset = 0): Promise<PostListItem[]> {
   const sql = `
-    SELECT id, slug, title, excerpt, to_char(created_at, 'YYYY-MM-DD"T"HH24:MI:SSZ') AS created_at
+    SELECT id, title, excerpt, to_char(created_at, 'YYYY-MM-DD"T"HH24:MI:SSZ') AS created_at
     FROM blog.posts
     ORDER BY created_at DESC
     LIMIT $1 OFFSET $2
   `;
   const { rows } = await query<PostListItem>(sql, [limit, offset]);
   return rows;
-}
+} 
 
-export async function getPostBySlug(slug: string): Promise<PostDetail | null> {
+export async function getPostById(id: number): Promise<PostDetail | null> {
   const sql = `
-    SELECT id, slug, title, excerpt, content_md,
+    SELECT id, title, excerpt, content_md,
            to_char(created_at, 'YYYY-MM-DD"T"HH24:MI:SSZ') AS created_at,
            to_char(updated_at, 'YYYY-MM-DD"T"HH24:MI:SSZ') AS updated_at
     FROM blog.posts
-    WHERE slug = $1
+    WHERE id = $1
     LIMIT 1
   `;
-  const { rows } = await query<PostDetail>(sql, [slug]);
+  const { rows } = await query<PostDetail>(sql, [id]);
   return rows[0] ?? null;
 }
 
-export type CreatePostInput = {
-  slug: string;
+export type CreatePostInput = { 
   title: string;
   content_md: string;
   excerpt?: string | null;
 };
 
 export async function createPost(input: CreatePostInput): Promise<PostDetail> {
-  const { slug, title, content_md, excerpt = null } = input;
+  const {  title, content_md, excerpt = null } = input;
   const sql = `
-    INSERT INTO blog.posts (slug, title, excerpt, content_md)
-    VALUES ($1, $2, $3, $4)
-    RETURNING id, slug, title, excerpt, content_md,
+    INSERT INTO blog.posts (  title, excerpt, content_md)
+    VALUES ($1, $2, $3)
+    RETURNING id,  title, excerpt, content_md,
               to_char(created_at, 'YYYY-MM-DD"T"HH24:MI:SSZ') AS created_at,
               to_char(updated_at, 'YYYY-MM-DD"T"HH24:MI:SSZ') AS updated_at
   `;
   try {
-    const { rows } = await query<PostDetail>(sql, [slug, title, excerpt, content_md]);
+    const { rows } = await query<PostDetail>(sql, [title, excerpt, content_md]);
     return rows[0];
   } catch (err: unknown) {
     const code = typeof err === "object" && err !== null && "code" in err
@@ -67,7 +64,7 @@ export async function createPost(input: CreatePostInput): Promise<PostDetail> {
       : undefined;
     if (code === "23505") {
       // unique_violation
-      throw new Error("DUPLICATE_SLUG");
+      throw new Error("DUPLICATE_TITLE");
     }
     throw err as Error;
   }
@@ -79,7 +76,7 @@ export type UpdatePostInput = {
   excerpt?: string | null;
 };
 
-export async function updatePost(slug: string, input: UpdatePostInput): Promise<PostDetail | null> {
+export async function updatePost(id: number, input: UpdatePostInput): Promise<PostDetail | null> {
   const sets: string[] = [];
   const vals: unknown[] = [];
   let i = 1;
@@ -100,19 +97,19 @@ export async function updatePost(slug: string, input: UpdatePostInput): Promise<
   const sql = `
     UPDATE blog.posts
     SET ${sets.join(", ")}
-    WHERE slug = $${i}
-    RETURNING id, slug, title, excerpt, content_md,
+    WHERE id = $${i}
+    RETURNING id, title, excerpt, content_md,
               to_char(created_at, 'YYYY-MM-DD"T"HH24:MI:SSZ') AS created_at,
               to_char(updated_at, 'YYYY-MM-DD"T"HH24:MI:SSZ') AS updated_at
   `;
-  vals.push(slug);
+  vals.push(id);
   const { rows } = await query<PostDetail>(sql, vals);
   return rows[0] ?? null;
 }
 
-export async function deletePost(slug: string): Promise<boolean> {
-  const sql = `DELETE FROM blog.posts WHERE slug = $1`;
-  const res = await query<unknown>(sql, [slug]);
+export async function deletePost(id: number): Promise<boolean> {
+  const sql = `DELETE FROM blog.posts WHERE id = $1`;
+  const res = await query<unknown>(sql, [id]);
   // pg's QueryResult has rowCount
   const count = (res as { rowCount?: number }).rowCount ?? 0;
   return count > 0;

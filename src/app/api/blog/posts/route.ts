@@ -28,18 +28,18 @@ export async function POST(req: NextRequest) {
     return json({ error: "INVALID_JSON" }, { status: 400 });
   }
 
-  const { slug, title, content_md, excerpt }: Partial<CreatePostInput> = (body ?? {}) as Partial<CreatePostInput>;
-  if (!slug || !title || !content_md) {
-    return json({ error: "MISSING_FIELDS", required: ["slug", "title", "content_md"] }, { status: 400 });
+  const {title, content_md, excerpt }: Partial<CreatePostInput> = (body ?? {}) as Partial<CreatePostInput>;
+  if (!title || !content_md) {
+    return json({ error: "MISSING_FIELDS", required: ["title", "content_md"] }, { status: 400 });
   }
 
   try {
-    const post = await createPost({ slug, title, content_md, excerpt: excerpt ?? null });
+    const post = await createPost({ title, content_md, excerpt: excerpt ?? null });
     return json({ data: post }, { status: 201 });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    if (message === "DUPLICATE_SLUG") {
-      return json({ error: "DUPLICATE_SLUG" }, { status: 409 });
+    if (message === "DUPLICATE_TITLE") {
+      return json({ error: "DUPLICATE_TITLE" }, { status: 409 });
     }
     return json({ error: "INTERNAL_ERROR" }, { status: 500 });
   }

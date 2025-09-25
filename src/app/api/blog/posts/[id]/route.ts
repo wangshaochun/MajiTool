@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { getPostBySlug, updatePost, deletePost, type UpdatePostInput } from "@/lib/posts";
+import { getPostById,updatePost, deletePost, type UpdatePostInput } from "@/lib/posts";
 
 export const revalidate = 0;
 
@@ -14,13 +14,13 @@ function getToken(req: NextRequest) {
   return token;
 }
 
-export async function GET(_: NextRequest, { params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug);
+export async function GET(_: NextRequest, { params }: { params: { id: number } }) {
+  const post = await getPostById(params.id);
   if (!post) return json({ error: "NOT_FOUND" }, { status: 404 });
   return json({ data: post });
 }
 
-export async function PATCH(req: NextRequest, { params }: { params: { slug: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: { id: number } }) {
   const token = getToken(req);
   if (token !== "maji-tool-com") {
     return json({ error: "UNAUTHORIZED" }, { status: 401 });
@@ -41,17 +41,17 @@ export async function PATCH(req: NextRequest, { params }: { params: { slug: stri
     return json({ error: "NO_FIELDS" }, { status: 400 });
   }
 
-  const updated = await updatePost(params.slug, input as UpdatePostInput);
+  const updated = await updatePost(params.id, input as UpdatePostInput);
   if (!updated) return json({ error: "NOT_FOUND" }, { status: 404 });
   return json({ data: updated });
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { slug: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: { id: number } }) {
   const token = getToken(req);
   if (token !== "maji-tool-com") {
     return json({ error: "UNAUTHORIZED" }, { status: 401 });
   }
-  const ok = await deletePost(params.slug);
+  const ok = await deletePost(params.id);
   if (!ok) return json({ error: "NOT_FOUND" }, { status: 404 });
   return json({ ok: true });
 }

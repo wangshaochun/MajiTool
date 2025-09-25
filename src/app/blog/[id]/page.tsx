@@ -1,15 +1,15 @@
 import { notFound } from "next/navigation";
-import { getPostBySlug } from "@/lib/posts";
+import {getPostById } from "@/lib/posts";
 import Markdown from "@/components/Markdown";
 
-type Params = { params: { slug: string } };
+type Params = { params: { id: number } };
 
 export const revalidate = 0; // 等价于 force-dynamic
 
 export default async function BlogDetailPage({ params }: Params) {
-  let post = null as Awaited<ReturnType<typeof getPostBySlug>>;
+  let post = null as Awaited<ReturnType<typeof getPostById>>;
   try {
-    post = await getPostBySlug(params.slug);
+    post = await getPostById(params.id);
   } catch (e) {
     console.error("Failed to load post", e);
   }
