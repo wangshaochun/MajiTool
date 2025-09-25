@@ -14,8 +14,8 @@ export default function Header() {
             </Link>
           </div>
           <div className="flex items-center space-x-6">
-            <Link href="/percent-calc" className="text-base text-gray-700 hover:text-blue-600 font-medium transition">パーセント計算</Link>
-            <Link href="/random-password" className="text-base text-gray-700 hover:text-blue-600 font-medium transition">パスワード生成</Link>
+            <Link href="/image" className="text-base text-gray-700 hover:text-blue-600 font-medium transition">画像ツール</Link>
+            <Link href="/math" className="text-base text-gray-700 hover:text-blue-600 font-medium transition">数学ツール</Link>
           </div>
         </div>
       </nav>

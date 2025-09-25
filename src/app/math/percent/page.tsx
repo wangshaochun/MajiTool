@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "パーセント計算機 ・ 割合 | MajiTool",
     description: "パーセント（%）の計算を簡単に行える無料ツール。割合計算、増減計算、逆算など、日常やビジネスで役立つパーセント計算機。使い方やよくある質問も掲載。",
-    url: "https://maji-tool.com/percent-calc",
+    url: "https://maji-tool.com/percent",
     siteName: "MajiTool",
     locale: "ja_JP",
     type: "website"

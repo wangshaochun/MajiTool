@@ -9,55 +9,14 @@ type Options = {
   symbols: boolean;
 };
 
-type Translations = {
-  random_password_generator: string;
-  random_password_description: string;
-  password_length: string;
-  include_uppercase: string;
-  include_lowercase: string;
-  include_numbers: string;
-  include_symbols: string;
-  generate_password: string;
-  generated_password: string;
-  copy: string;
-  copied: string;
-  generation_count: string;
-  generation_count_description: string;
-  include_characters: string;
-  include_characters_description: string;
-  exclude_characters: string;
-  exclude_characters_description: string;
-  character_set_description: string;
-  password_length_description: string;
-  generation_result: string;
-  generation_result_description: string;
-  download: string;
-  download_description: string;
-  min_length: string;
-  max_length: string;
-  default_exclude_chars: string;
-  generating: string;
-  download_passwords: string;
-  character_types: string;
-  use_length_range: string;
-  copy_all: string;
-  function_description: string;
-  showing_first_passwords: string;
-  individual_copy: string;
-};
-
-export default function RandomPasswordClient({
-  translations,
-}: {
-  translations: Translations;
-}) {
+export default function RandomPasswordClient() {
   const [passwords, setPasswords] = useState<string[]>([]);
   const [generationCount, setGenerationCount] = useState(1);
   const [minLength, setMinLength] = useState(16);
   const [maxLength, setMaxLength] = useState(16);
   const [useRange, setUseRange] = useState(false);
   const [includeChars, setIncludeChars] = useState("");
-  const [excludeChars, setExcludeChars] = useState(translations.default_exclude_chars || "0oO1iIlLq");
+  const [excludeChars, setExcludeChars] = useState("0oO1iIlLq");
   const [options, setOptions] = useState<Options>({
     uppercase: true,
     lowercase: true,
@@ -169,14 +128,14 @@ export default function RandomPasswordClient({
   return (
     <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
       <h1 className="text-3xl font-bold text-gray-800 mb-4">
-        {translations.random_password_generator}
+        ランダムパスワード生成
       </h1> 
       {/* 配置选项 */}
       <div className="space-y-6">
         {/* 生成数量 */}
         <div>
           <label htmlFor="count" className="block text-sm font-medium text-gray-700 mb-2">
-            {translations.generation_count}
+            生成数
           </label>
           <input
             type="number"
@@ -193,7 +152,7 @@ export default function RandomPasswordClient({
         <div>
           <div className="flex items-center mb-2">
             <label className="block text-sm font-medium text-gray-700">
-              {translations.password_length}
+              パスワードの長さ:
             </label>
             <div className="ml-4 flex items-center">
               <input
@@ -203,7 +162,7 @@ export default function RandomPasswordClient({
                 onChange={(e) => setUseRange(e.target.checked)}
                 className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
               />
-              <label htmlFor="useRange" className="ml-2 text-sm text-gray-700">{translations.use_length_range}</label>
+              <label htmlFor="useRange" className="ml-2 text-sm text-gray-700">長さ範囲を使用</label>
             </div>
           </div>
           
@@ -211,7 +170,7 @@ export default function RandomPasswordClient({
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label htmlFor="minLength" className="block text-xs text-gray-500 mb-1">
-                  {translations.min_length}
+                  最小長
                 </label>
                 <input
                   type="number"
@@ -225,7 +184,7 @@ export default function RandomPasswordClient({
               </div>
               <div>
                 <label htmlFor="maxLength" className="block text-xs text-gray-500 mb-1">
-                  {translations.max_length}
+                  最大長
                 </label>
                 <input
                   type="number"
@@ -252,9 +211,16 @@ export default function RandomPasswordClient({
 
         {/* 字符类型选择 */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">{translations.character_types}</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">文字種</label>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {(Object.keys(options) as Array<keyof Options>).map((key) => (
+            {(Object.keys(options) as Array<keyof Options>).map((key) => {
+              const labels = {
+                uppercase: "大文字を含める (A-Z)",
+                lowercase: "小文字を含める (a-z)",
+                numbers: "数字を含める (0-9)",
+                symbols: "記号を含める (!@#$%^&*)"
+              };
+              return (
               <div key={key} className="flex items-center">
                 <input
                   id={key}
@@ -267,17 +233,18 @@ export default function RandomPasswordClient({
                   className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
                 <label htmlFor={key} className="ml-2 block text-sm text-gray-900">
-                  {translations[`include_${key}` as keyof Translations]}
+                  {labels[key]}
                 </label>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
         {/* 包含字符 */}
         <div>
           <label htmlFor="includeChars" className="block text-sm font-medium text-gray-700 mb-2">
-            {translations.include_characters}
+            含める文字
           </label>
           <input
             type="text"
@@ -292,7 +259,7 @@ export default function RandomPasswordClient({
         {/* 排除字符 */}
         <div>
           <label htmlFor="excludeChars" className="block text-sm font-medium text-gray-700 mb-2">
-            {translations.exclude_characters}
+            除外する文字
           </label>
           <input
             type="text"
@@ -311,7 +278,7 @@ export default function RandomPasswordClient({
         disabled={isGenerating}
         className="mt-6 w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed"
       >
-        {isGenerating ? translations.generating : translations.generate_password}
+        {isGenerating ? "生成中..." : "パスワードを生成"}
       </button>
 
       {/* 生成结果 */}
@@ -319,20 +286,20 @@ export default function RandomPasswordClient({
         <div className="mt-8">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold text-gray-800">
-              {translations.generation_result} ({passwords.length}個)
+              生成結果 ({passwords.length}個)
             </h3>
             <div className="space-x-2">
               <button
                 onClick={handleCopyAll}
                 className="px-4 py-2 text-sm font-medium text-indigo-600 bg-indigo-100 hover:bg-indigo-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
-                {copied ? translations.copied : translations.copy_all}
+                {copied ? "コピーしました！" : "すべてコピー"}
               </button>
               <button
                 onClick={() => downloadPasswords(passwords)}
                 className="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               >
-                {translations.download_passwords}
+                パスワードをダウンロード
               </button>
             </div>
           </div>
@@ -345,13 +312,13 @@ export default function RandomPasswordClient({
                   onClick={() => handleCopy(password)}
                   className="ml-2 px-2 py-1 text-xs text-indigo-600 hover:text-indigo-800 focus:outline-none"
                 >
-                  {translations.individual_copy}
+                  コピー
                 </button>
               </div>
             ))}
             {passwords.length > 50 && (
               <div className="mt-2 text-sm text-gray-500 text-center">
-                {translations.showing_first_passwords.replace('{count}', passwords.length.toString())}
+                最初の50個のパスワードを表示中。合計{passwords.length}個。完全なリストを取得するには、ダウンロード機能をご利用ください。
               </div>
             )}
           </div>
@@ -360,15 +327,15 @@ export default function RandomPasswordClient({
             
       {/* SEO描述部分 */}
       <div className="mb-8 p-4 bg-blue-50 rounded-lg mt-10">
-        <h2 className="text-lg font-semibold text-blue-800 mb-3">{translations.function_description}</h2>
+        <h2 className="text-lg font-semibold text-blue-800 mb-3">機能説明</h2>
         <div className="space-y-2 text-sm text-blue-700">
-          <p><strong>使用文字：</strong>{translations.character_set_description}</p>
-          <p><strong>生成数：</strong>{translations.generation_count_description}</p>
-          <p><strong>パスワード長：</strong>{translations.password_length_description}</p>
-          <p><strong>含める文字：</strong>{translations.include_characters_description}</p>
-          <p><strong>除外する文字：</strong>{translations.exclude_characters_description}</p>
-          <p><strong>生成結果：</strong>{translations.generation_result_description}</p>
-          <p><strong>ダウンロード：</strong>{translations.download_description}</p>
+          <p><strong>使用文字：</strong>ランダムパスワード生成に使用する文字の範囲です。</p>
+          <p><strong>生成数：</strong>生成するパスワードの個数。範囲は1〜1,000,000個です。大量に生成する場合は時間がかかる場合があります。ブラウザで待機メッセージが表示された場合は、そのまま待機してください。</p>
+          <p><strong>パスワード長：</strong>個別パスワードの文字列長。単一の値または範囲値を入力できます。パスワード長の範囲は1〜1,000,000文字です。</p>
+          <p><strong>含める文字：</strong>入力した文字と選択した文字種を組み合わせてランダムパスワードを生成します。含める文字は候補文字セットに追加されるだけで、生成されるパスワードに必ず含まれるわけではありません。同じ文字を重複して入力すると、その文字の重みが高くなります。</p>
+          <p><strong>除外する文字：</strong>使用文字から特定の文字を除外します。生成されるパスワードには除外文字は絶対に含まれません。</p>
+          <p><strong>生成結果：</strong>生成されたランダムパスワード文字列の結果です。1行に1つずつ表示され、重複はありません。パスワード文字列の長さが100,000文字を超える場合は、自動的にローカルにダウンロードされます。</p>
+          <p><strong>ダウンロード：</strong>ランダムパスワードの結果をローカルにダウンロードします。ダウンロードファイルの文字エンコーディングはUTF-8です。</p>
         </div>
       </div>
     </div>
