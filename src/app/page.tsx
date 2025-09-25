@@ -1,16 +1,24 @@
-"use client";
-
 import Link from "next/link";
+import { getPosts } from "@/lib/posts";
 
-export default function Home() {
+export const revalidate = 0;
+
+export default async function Home() {
   const imageTools = [
     { name: "画像ピクセル化", description: "ドット絵風に変換（粗さ調整可）", link: "/image/pixelate" },
     { name: "画像圧縮", description: "品質と形式（WEBP/JPEG）で容量削減", link: "/image/compress" },
-  ];
+  ] as const;
   const mathTools = [
     { name: "パーセント計算", description: "割合・増減・割引などに対応", link: "/math/percent" },
     { name: "パスワード生成", description: "安全なランダムパスワードを作成", link: "/math/random-password" },
-  ];
+  ] as const;
+
+  let posts = [] as Awaited<ReturnType<typeof getPosts>>;
+  try {
+    posts = await getPosts(10, 0);
+  } catch (e) {
+    console.error("Failed to load posts on home", e);
+  }
 
   return (
     <>
@@ -24,6 +32,30 @@ export default function Home() {
       </div>
 
       <div className="space-y-10">
+        {/* 最新ブログ */}
+        <section>
+          <div className="flex items-end justify-between mb-4">
+            <h2 className="text-2xl font-bold text-gray-900">最新ブログ</h2>
+            <Link href="/blog" className="text-sm text-blue-600 hover:underline">すべて見る →</Link>
+          </div>
+          {posts.length === 0 ? (
+            <div className="text-gray-500">まだ投稿がありません</div>
+          ) : (
+            <ul className="space-y-4">
+              {posts.map((p) => (
+                <li key={p.id} className="bg-white p-4 rounded shadow-sm">
+                  <Link href={`/blog/${p.slug}`} className="text-lg font-semibold text-blue-600 hover:underline">
+                    {p.title}
+                  </Link>
+                  {p.excerpt && <p className="text-gray-600 mt-1 line-clamp-2">{p.excerpt}</p>}
+                  <div className="text-sm text-gray-400 mt-2">{new Date(p.created_at).toLocaleDateString()}</div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
+        {/* 画像ツール */}
         <section>
           <div className="flex items-end justify-between mb-4">
             <h2 className="text-2xl font-bold text-gray-900">画像ツール</h2>
@@ -39,6 +71,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* 数学ツール */}
         <section>
           <div className="flex items-end justify-between mb-4">
             <h2 className="text-2xl font-bold text-gray-900">数学ツール</h2>

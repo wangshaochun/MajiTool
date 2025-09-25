@@ -14,6 +14,7 @@ export default function Header() {
             </Link>
           </div>
           <div className="flex items-center space-x-6">
+            <Link href="/blog" className="text-base text-gray-700 hover:text-blue-600 font-medium transition">ブログ</Link>
             <Link href="/image" className="text-base text-gray-700 hover:text-blue-600 font-medium transition">画像ツール</Link>
             <Link href="/math" className="text-base text-gray-700 hover:text-blue-600 font-medium transition">数学ツール</Link>
           </div>
