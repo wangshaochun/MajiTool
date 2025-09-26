@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import {getPostById } from "@/lib/posts";
 import Markdown from "@/components/Markdown";
+import ShareButtons from "@/components/ShareButtons";
 
 type Params = { params: { id: number } };
 
@@ -23,6 +24,9 @@ export default async function BlogDetailPage({ params }: Params) {
         公開日 {new Date(post.created_at).toLocaleString()}
       </div>
       <Markdown content={post.content_md} />
+      <div className="not-prose">
+        <ShareButtons title={post.title} />
+      </div>
     </article>
   );
 }
