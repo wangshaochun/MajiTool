@@ -24,7 +24,7 @@ export default async function BlogListPage() {
                 {p.title}
               </Link>
               {p.excerpt && <p className="text-gray-600 mt-1">{p.excerpt}</p>}
-              <div className="text-sm text-gray-400 mt-2">{new Date(p.created_at).toLocaleDateString()}</div>
+              <div className="text-sm text-gray-400 mt-2">{new Date(p.created_at).toISOString()}</div>
             </li>
           ))}
         </ul>
