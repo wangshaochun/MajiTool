@@ -9,6 +9,11 @@ export default async function Home() {
     { name: "画像圧縮", description: "品質と形式（WEBP/JPEG）で容量削減", link: "/image/compress" },
   ] as const;
   const mathTools = [
+    {
+      name: "死亡時間カウントダウン",
+      description: "日本の平均寿命をもとに、あなたの残り寿命をリアルタイムで表示。",
+      link: "/math/death-countdown",
+    },
     { name: "パーセント計算", description: "割合・増減・割引などに対応", link: "/math/percent" },
     { name: "パスワード生成", description: "安全なランダムパスワードを作成", link: "/math/random-password" },
   ] as const;

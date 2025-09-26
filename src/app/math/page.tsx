@@ -26,6 +26,11 @@ const mathTools = [
     description: "任意の長さ・文字種で安全なランダムパスワードを作成。",
     link: "/math/random-password",
   },
+  {
+    name: "死亡時間カウントダウン",
+    description: "日本の平均寿命をもとに、あなたの残り寿命をリアルタイムで表示。",
+    link: "/math/death-countdown",
+  },
 ];
 
 export default function MathIndexPage() {
