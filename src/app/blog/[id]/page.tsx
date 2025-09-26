@@ -3,7 +3,7 @@ import {getPostById } from "@/lib/posts";
 import Markdown from "@/components/Markdown";
 import ShareButtons from "@/components/ShareButtons";
 
-type Params = { params: { id: number } };
+type Params = { params: Promise<{ id: string }> };
 
 export const revalidate = 0; // 等价于 force-dynamic
 
@@ -11,7 +11,9 @@ export default async function BlogDetailPage({ params }: Params) {
   let post = null as Awaited<ReturnType<typeof getPostById>>;
   try {
     const resolvedParams = await params;
-    post = await getPostById(resolvedParams.id);
+    const id = Number(resolvedParams.id);
+    if (Number.isNaN(id)) return notFound();
+    post = await getPostById(id);
   } catch (e) {
     console.error("Failed to load post", e);
   }

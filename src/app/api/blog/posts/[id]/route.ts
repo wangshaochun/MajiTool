@@ -14,13 +14,16 @@ function getToken(req: NextRequest) {
   return token;
 }
 
-export async function GET(_: NextRequest, { params }: { params: { id: number } }) {
-  const post = await getPostById(params.id);
+export async function GET(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const p = await params;
+  const id = Number(p.id);
+  if (Number.isNaN(id)) return json({ error: "INVALID_ID" }, { status: 400 });
+  const post = await getPostById(id);
   if (!post) return json({ error: "NOT_FOUND" }, { status: 404 });
   return json({ data: post });
 }
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: number } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const token = getToken(req);
   if (token !== "maji-tool-com") {
     return json({ error: "UNAUTHORIZED" }, { status: 401 });
@@ -41,17 +44,23 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: number
     return json({ error: "NO_FIELDS" }, { status: 400 });
   }
 
-  const updated = await updatePost(params.id, input as UpdatePostInput);
+  const p = await params;
+  const id = Number(p.id);
+  if (Number.isNaN(id)) return json({ error: "INVALID_ID" }, { status: 400 });
+  const updated = await updatePost(id, input as UpdatePostInput);
   if (!updated) return json({ error: "NOT_FOUND" }, { status: 404 });
   return json({ data: updated });
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: number } }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const token = getToken(req);
   if (token !== "maji-tool-com") {
     return json({ error: "UNAUTHORIZED" }, { status: 401 });
   }
-  const ok = await deletePost(params.id);
+  const p = await params;
+  const id = Number(p.id);
+  if (Number.isNaN(id)) return json({ error: "INVALID_ID" }, { status: 400 });
+  const ok = await deletePost(id);
   if (!ok) return json({ error: "NOT_FOUND" }, { status: 404 });
   return json({ ok: true });
 }
