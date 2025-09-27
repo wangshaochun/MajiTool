@@ -37,28 +37,7 @@ export default async function Home() {
       </div>
 
       <div className="space-y-10">
-        {/* 最新ブログ */}
-        <section>
-          <div className="flex items-end justify-between mb-4">
-            <h2 className="text-2xl font-bold text-gray-900">最新ブログ</h2>
-            <Link href="/blog" className="text-sm text-blue-600 hover:underline">すべて見る →</Link>
-          </div>
-          {posts.length === 0 ? (
-            <div className="text-gray-500">まだ投稿がありません</div>
-          ) : (
-            <ul className="space-y-4">
-              {posts.map((p) => (
-                <li key={p.id} className="bg-white p-4 rounded shadow-sm">
-                  <Link href={`/blog/${p.id}`} className="text-lg font-semibold text-blue-600 hover:underline">
-                    {p.title}
-                  </Link>
-                  {p.excerpt && <p className="text-gray-600 mt-1 line-clamp-2">{p.excerpt}</p>}
-                  <div className="text-sm text-gray-400 mt-2">{new Date(p.created_at).toLocaleDateString()}</div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
+
 
         {/* 画像ツール */}
         <section>
@@ -90,6 +69,28 @@ export default async function Home() {
               </Link>
             ))}
           </div>
+        </section>
+       {/* 最新ブログ */}
+        <section>
+          <div className="flex items-end justify-between mb-4">
+            <h2 className="text-2xl font-bold text-gray-900">最新ブログ</h2>
+            <Link href="/blog" className="text-sm text-blue-600 hover:underline">すべて見る →</Link>
+          </div>
+          {posts.length === 0 ? (
+            <div className="text-gray-500">まだ投稿がありません</div>
+          ) : (
+            <ul className="space-y-4">
+              {posts.map((p) => (
+                <li key={p.id} className="bg-white p-4 rounded shadow-sm">
+                  <Link href={`/blog/${p.id}`} className="text-lg font-semibold text-blue-600 hover:underline">
+                    {p.title}
+                  </Link>
+                  {p.excerpt && <p className="text-gray-600 mt-1 line-clamp-2">{p.excerpt}</p>}
+                  <div className="text-sm text-gray-400 mt-2">{new Date(p.created_at).toLocaleDateString()}</div>
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
       </div>
     </>
