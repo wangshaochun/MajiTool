@@ -32,6 +32,11 @@ const mathTools = [
     description: "日本の平均寿命をもとに、あなたの残り寿命をリアルタイムで表示。",
     link: "/math/death-countdown",
   },
+  {
+    name:"Markdown オンライン編集ツール",
+    description: "リアルタイムプレビュー付きのシンプルな Markdown エディタ。",
+    link: "/math/markdown",
+  }
 ];
 
 export default function MathIndexPage() {

@@ -28,6 +28,11 @@ export default async function Home() {
     },
     { name: "パーセント計算", description: "割合・増減・割引などに対応", link: "/math/percent" },
     { name: "パスワード生成", description: "安全なランダムパスワードを作成", link: "/math/random-password" },
+    {
+      name:"Markdown オンライン編集ツール",
+      description: "リアルタイムプレビュー付きのシンプルな Markdown エディタ。",
+      link: "/math/markdown",
+    }
   ] as const;
 
   let posts = [] as Awaited<ReturnType<typeof getPosts>>;
