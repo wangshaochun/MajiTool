@@ -1,5 +1,17 @@
+import type { Metadata } from 'next';
 import Link from "next/link";
 import { getPosts } from "@/lib/posts";
+
+export const metadata: Metadata = {
+  title: 'ブログ',
+  description: 'オンラインツールの使い方、技術情報、アップデート情報など、役立つ情報をお届けします。',
+  keywords: 'ブログ, オンラインツール, 技術情報, アップデート',
+  openGraph: {
+    title: 'ブログ - MajiTool',
+    description: 'オンラインツールの使い方、技術情報、アップデート情報など、役立つ情報をお届けします。',
+    type: 'website',
+  },
+};
 
 export const revalidate = 0;
 

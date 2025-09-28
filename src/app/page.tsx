@@ -1,5 +1,17 @@
+import type { Metadata } from 'next';
 import Link from "next/link";
 import { getPosts } from "@/lib/posts";
+
+export const metadata: Metadata = {
+  title: 'MajiTool - オンラインツールハブ',
+  description: '日々のタスクを効率化するシンプルでパワフルなオンラインツールコレクション。画像編集、数学計算など、無料でご利用いただけます。',
+  keywords: 'オンラインツール, 画像編集, 数学計算, ユーティリティ, 無料ツール, パスワード生成, 画像圧縮',
+  openGraph: {
+    title: 'MajiTool - オンラインツールハブ',
+    description: '日々のタスクを効率化するシンプルでパワフルなオンラインツールコレクション。',
+    type: 'website',
+  },
+};
 
 export const revalidate = 0;
 
