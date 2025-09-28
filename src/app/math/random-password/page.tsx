@@ -3,7 +3,7 @@ import RandomPasswordClient from "@/components/RandomPasswordClient";
 import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
-  title: "ランダムパスワード生成器 | MajiTool",
+  title: "ランダムパスワード生成器 ",
   description: "安全で強力なランダムパスワードを無料で生成。長さ、文字種（大文字・小文字・数字・記号）を自由に設定できます。セキュリティを向上させるためのパスワード作成ツール。",
   keywords: [
     "パスワード生成",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "無料ツール"
   ],
   openGraph: {
-    title: "ランダムパスワード生成器 | MajiTool",
+    title: "ランダムパスワード生成器 ",
     description: "安全で強力なランダムパスワードを無料で生成。長さ、文字種（大文字・小文字・数字・記号）を自由に設定できます。",
     url: "https://maji-tool.com/math/random-password",
     siteName: "MajiTool",

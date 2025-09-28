@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
-  title: "画像ピクセル化ツール | MajiTool",
+  title: "画像ピクセル化ツール ",
   description: "画像をピクセル化（ドット絵風）に変換する無料オンラインツール。アップロードした画像を簡単にピクセルアート風に変換できます。",
   keywords: [
     "画像ピクセル化",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "オンライン変換"
   ],
   openGraph: {
-    title: "画像ピクセル化ツール | MajiTool",
+    title: "画像ピクセル化ツール ",
     description: "画像をピクセル化（ドット絵風）に変換する無料オンラインツール。アップロードした画像を簡単にピクセルアート風に変換できます。",
     url: "https://maji-tool.com/image/pixelate",
     siteName: "MajiTool",

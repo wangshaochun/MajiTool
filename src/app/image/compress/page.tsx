@@ -4,7 +4,7 @@ import CompressImageClient from "@/components/CompressImageClient";
 import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
-  title: "画像圧縮ツール | MajiTool",
+  title: "画像圧縮ツール ",
   description:
     "画像ファイルをオンラインで手軽に圧縮。品質（圧縮率）や出力形式（JPEG/WEBP）を選び、見た目を保ちながら容量を削減できます。ブラウザ内で処理され、アップロードは行われません。",
   keywords: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "無料ツール"
   ],
   openGraph: {
-    title: "画像圧縮ツール | MajiTool",
+    title: "画像圧縮ツール ",
     description:
       "画像ファイルをオンラインで手軽に圧縮。品質（圧縮率）や出力形式（JPEG/WEBP）を選び、見た目を保ちながら容量を削減できます。ブラウザ内で処理され、アップロードは行われません。",
     url: "https://maji-tool.com/image/compress",

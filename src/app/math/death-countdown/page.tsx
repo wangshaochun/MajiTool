@@ -3,7 +3,7 @@ import DeathCountdownClient from '@/components/DeathCountdownClient';
 import ShareButtons from '@/components/ShareButtons';
 
 export const metadata: Metadata = {
-  title: "死亡時間カウントダウン | MajiTool",
+  title: "死亡時間カウントダウン ",
   description: "日本の平均寿命をもとに、あなたの残り寿命をリアルタイムで表示するツール。性別・生年月日・生活習慣を考慮した統計的な計算結果を秒単位でカウントダウン。",
   keywords: [
     "死亡時間",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "ライフカウンター"
   ],
   openGraph: {
-    title: "死亡時間カウントダウン | MajiTool",
+    title: "死亡時間カウントダウン ",
     description: "日本の平均寿命をもとに、あなたの残り寿命をリアルタイムで表示するツール。",
     url: "https://maji-tool.com/math/death-countdown",
     siteName: "MajiTool",

@@ -4,10 +4,10 @@ import type { Metadata } from "next";
 import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
-  title: "画像ツール一覧 | MajiTool",
+  title: "画像ツール一覧 ",
   description: "画像関連のオンラインツール一覧。ピクセル化、圧縮などの便利機能を無料で利用できます。",
   openGraph: {
-    title: "画像ツール一覧 | MajiTool",
+    title: "画像ツール一覧 ",
     description: "画像関連のオンラインツール一覧。ピクセル化、圧縮などの便利機能を無料で利用できます。",
     url: "https://maji-tool.com/image",
     siteName: "MajiTool",

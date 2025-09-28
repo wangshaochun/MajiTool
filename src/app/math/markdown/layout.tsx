@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'リアルタイムでMarkdownを編集・プレビューできるエディタです。',
   keywords: ['Markdown', 'Editor'],
   openGraph: {
-    title: 'Markdown エディタ | MajiTool',
+    title: 'Markdown エディタ ',
     description: 'リアルタイムでMarkdownを編集・プレビューできるエディタです。',
     url: 'https://maji-tool.com/math/markdown',
     siteName: 'MajiTool',

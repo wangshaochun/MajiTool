@@ -4,10 +4,10 @@ import type { Metadata } from "next";
 import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
-  title: "数学ツール一覧 | MajiTool",
+  title: "数学ツール一覧 ",
   description: "パーセント計算、パスワード生成などの数学関連ツールの一覧です。",
   openGraph: {
-    title: "数学ツール一覧 | MajiTool",
+    title: "数学ツール一覧 ",
     description: "パーセント計算、パスワード生成などの数学関連ツールの一覧です。",
     url: "https://maji-tool.com/math",
     siteName: "MajiTool",

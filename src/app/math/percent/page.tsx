@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
-  title: "パーセント計算機 ・ 割合 | MajiTool",
+  title: "パーセント計算機 ・ 割合 ",
   description: "パーセント（%）の計算を簡単に行える無料ツール。割合計算、増減計算、逆算など、日常やビジネスで役立つパーセント計算機。使い方やよくある質問も掲載。",
   keywords: [
     "パーセント計算",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "無料ツール"
   ],
   openGraph: {
-    title: "パーセント計算機 ・ 割合 | MajiTool",
+    title: "パーセント計算機 ・ 割合 ",
     description: "パーセント（%）の計算を簡単に行える無料ツール。割合計算、増減計算、逆算など、日常やビジネスで役立つパーセント計算機。使い方やよくある質問も掲載。",
     url: "https://maji-tool.com/percent",
     siteName: "MajiTool",
