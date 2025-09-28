@@ -1,6 +1,7 @@
 import React from "react";
 import PercentCalcClient from "@/components/PercentCalcClient";
 import type { Metadata } from "next";
+import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
   title: "パーセント計算機 ・ 割合 | MajiTool",
@@ -25,5 +26,10 @@ export const metadata: Metadata = {
 };
 
 export default function PercentCalcPage() {
-  return <PercentCalcClient />;
+  return (
+    <>
+      <PercentCalcClient />
+      <ShareButtons title="パーセント計算機 ・ 割合" />
+    </>
+  );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import DeathCountdownClient from '@/components/DeathCountdownClient';
+import ShareButtons from '@/components/ShareButtons';
 
 export const metadata: Metadata = {
   title: "死亡時間カウントダウン | MajiTool",
@@ -24,5 +25,10 @@ export const metadata: Metadata = {
 };
 
 export default function DeathCountdownPage() {
-  return <DeathCountdownClient />;
+  return (
+    <>
+      <DeathCountdownClient />
+      <ShareButtons title="死亡時間カウントダウン" />
+    </>
+  );
 }

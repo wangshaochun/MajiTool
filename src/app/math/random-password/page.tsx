@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import RandomPasswordClient from "@/components/RandomPasswordClient";
+import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
   title: "ランダムパスワード生成器 | MajiTool",
@@ -23,5 +24,10 @@ export const metadata: Metadata = {
 };
 
 export default function RandomPasswordPage() {
-  return <RandomPasswordClient />;
+  return (
+    <>
+      <RandomPasswordClient />
+      <ShareButtons title="ランダムパスワード生成器" />
+    </>
+  );
 }

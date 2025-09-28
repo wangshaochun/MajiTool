@@ -1,6 +1,7 @@
 import React from "react";
 import PixelateImageClient from "@/components/PixelateImageClient";
 import type { Metadata } from "next";
+import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
   title: "画像ピクセル化ツール | MajiTool",
@@ -24,5 +25,10 @@ export const metadata: Metadata = {
 };
 
 export default function PixelateImagePage() {
-  return <PixelateImageClient />;
+  return (
+    <>
+      <PixelateImageClient />
+      <ShareButtons title="画像ピクセル化ツール" />
+    </>
+  );
 }

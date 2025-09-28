@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import CompressImageClient from "@/components/CompressImageClient";
+import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
   title: "画像圧縮ツール | MajiTool",
@@ -26,5 +27,10 @@ export const metadata: Metadata = {
 };
 
 export default function CompressPage() {
-  return <CompressImageClient />;
+  return (
+    <>
+      <CompressImageClient />
+      <ShareButtons title="画像圧縮ツール" />
+    </>
+  );
 }

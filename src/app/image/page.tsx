@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
   title: "画像ツール一覧 | MajiTool",
@@ -44,6 +45,7 @@ export default function ImageIndexPage() {
           </Link>
         ))}
       </div>
+      <ShareButtons title="画像ツール一覧" />
     </div>
   );
 }
