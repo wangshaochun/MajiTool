@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     "無料ツール",
     "オンライン変換"
   ],
+  alternates: {
+    canonical: 'https://maji-tool.com/image/pixelate'
+  },
   openGraph: {
     title: "画像ピクセル化ツール ",
     description: "画像をピクセル化（ドット絵風）に変換する無料オンラインツール。アップロードした画像を簡単にピクセルアート風に変換できます。",

@@ -6,6 +6,9 @@ import ShareButtons from "@/components/ShareButtons";
 export const metadata: Metadata = {
   title: "画像ツール一覧 ",
   description: "画像関連のオンラインツール一覧。ピクセル化、圧縮などの便利機能を無料で利用できます。",
+  alternates: {
+    canonical: 'https://maji-tool.com/image'
+  },
   openGraph: {
     title: "画像ツール一覧 ",
     description: "画像関連のオンラインツール一覧。ピクセル化、圧縮などの便利機能を無料で利用できます。",

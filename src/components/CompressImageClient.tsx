@@ -202,7 +202,7 @@ export default function CompressImageClient() {
 
       <div className="grid md:grid-cols-2 gap-6 items-start">
         <div>
-          <h2 className="font-semibold text-gray-800 mb-2">オリジナル</h2>
+          <h2 className="font-semibold text-gray-800 mb-2">オリジナル画像</h2>
           <div className="bg-white rounded-lg shadow-sm p-3 flex justify-center items-center">
             {imageUrl && naturalSize ? (
               <NextImage
@@ -222,7 +222,7 @@ export default function CompressImageClient() {
         </div>
 
         <div>
-          <h2 className="font-semibold text-gray-800 mb-2">圧縮後</h2>
+          <h3 className="font-semibold text-gray-800 mb-2">圧縮後の画像</h3>
           <div className="bg-white rounded-lg shadow-sm p-3 flex justify-center items-center overflow-auto">
             <div style={{ transformOrigin: "top left", transform: `scale(${displayScale})` }}>
               <canvas ref={canvasRef} className="block" />
@@ -244,15 +244,15 @@ export default function CompressImageClient() {
         </div>
       </div>
 
-      <details className="mt-8 bg-white rounded-lg p-4 shadow-sm">
-        <summary className="cursor-pointer font-semibold text-gray-800">使い方</summary>
-        <ul className="list-disc pl-6 text-sm text-gray-700 mt-2 space-y-1">
+      <section className="mt-8 bg-white rounded-lg p-4 shadow-sm">
+        <h2 className="font-semibold text-gray-800 mb-3">使い方・操作方法</h2>
+        <ul className="list-disc pl-6 text-sm text-gray-700 space-y-1">
           <li>画像を選択（またはドラッグ＆ドロップ）するとプレビューされます。</li>
           <li>出力形式（WEBP/JPEG）と品質を調整して、見た目と容量のバランスを決めます。</li>
           <li>「圧縮画像をダウンロード」ボタンで保存できます。</li>
           <li>処理は端末内で完結します。画像はサーバーに送信されません。</li>
         </ul>
-      </details>
+      </section>
     </div>
   );
 }

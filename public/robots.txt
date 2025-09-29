@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# すべての爬虫類アクセスを許可
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://majitool.com/sitemap.xml
+
+Crawl-delay: 15

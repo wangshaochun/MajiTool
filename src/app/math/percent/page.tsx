@@ -15,10 +15,13 @@ export const metadata: Metadata = {
     "計算機",
     "無料ツール"
   ],
+  alternates: {
+    canonical: 'https://maji-tool.com/math/percent'
+  },
   openGraph: {
     title: "パーセント計算機 ・ 割合 ",
     description: "パーセント（%）の計算を簡単に行える無料ツール。割合計算、増減計算、逆算など、日常やビジネスで役立つパーセント計算機。使い方やよくある質問も掲載。",
-    url: "https://maji-tool.com/percent",
+    url: "https://maji-tool.com/math/percent",
     siteName: "MajiTool",
     locale: "ja_JP",
     type: "website"

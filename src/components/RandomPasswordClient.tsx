@@ -327,7 +327,7 @@ export default function RandomPasswordClient() {
             
       {/* SEO描述部分 */}
       <div className="mb-8 p-4 bg-blue-50 rounded-lg mt-10">
-        <h2 className="text-lg font-semibold text-blue-800 mb-3">機能説明</h2>
+        <h3 className="text-lg font-semibold text-blue-800 mb-3">機能説明</h3>
         <div className="space-y-2 text-sm text-blue-700">
           <p><strong>使用文字：</strong>ランダムパスワード生成に使用する文字の範囲です。</p>
           <p><strong>生成数：</strong>生成するパスワードの個数。範囲は1〜1,000,000個です。大量に生成する場合は時間がかかる場合があります。ブラウザで待機メッセージが表示された場合は、そのまま待機してください。</p>

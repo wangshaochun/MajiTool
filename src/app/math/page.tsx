@@ -6,6 +6,9 @@ import ShareButtons from "@/components/ShareButtons";
 export const metadata: Metadata = {
   title: "数学ツール一覧 ",
   description: "パーセント計算、パスワード生成などの数学関連ツールの一覧です。",
+  alternates: {
+    canonical: 'https://maji-tool.com/math'
+  },
   openGraph: {
     title: "数学ツール一覧 ",
     description: "パーセント計算、パスワード生成などの数学関連ツールの一覧です。",

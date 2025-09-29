@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     "サイズ削減",
     "無料ツール"
   ],
+  alternates: {
+    canonical: 'https://maji-tool.com/image/compress'
+  },
   openGraph: {
     title: "画像圧縮ツール ",
     description:

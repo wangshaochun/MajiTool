@@ -6,9 +6,13 @@ export const metadata: Metadata = {
   title: 'MajiTool - オンラインツールハブ',
   description: '日々のタスクを効率化するシンプルでパワフルなオンラインツールコレクション。画像編集、数学計算など、無料でご利用いただけます。',
   keywords: 'オンラインツール, 画像編集, 数学計算, ユーティリティ, 無料ツール, パスワード生成, 画像圧縮',
+  alternates: {
+    canonical: 'https://maji-tool.com'
+  },
   openGraph: {
     title: 'MajiTool - オンラインツールハブ',
     description: '日々のタスクを効率化するシンプルでパワフルなオンラインツールコレクション。',
+    url: 'https://maji-tool.com',
     type: 'website',
   },
 };

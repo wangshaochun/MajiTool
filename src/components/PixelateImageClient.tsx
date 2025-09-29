@@ -201,7 +201,7 @@ export default function PixelateImageClient() {
       {/* プレビュー領域 */}
       <div className="grid md:grid-cols-2 gap-6 items-start">
         <div>
-          <h2 className="font-semibold text-gray-800 mb-2">オリジナル</h2>
+          <h3 className="font-semibold text-gray-800 mb-2">オリジナル画像</h3>
           <div className="bg-white rounded-lg shadow-sm p-3 flex justify-center items-center">
             {imageUrl && naturalSize ? (
               // 表示用に縮小した最適化イメージ（実際の処理は offscreen/canvas で実行）
@@ -220,7 +220,7 @@ export default function PixelateImageClient() {
           </div>
         </div>
         <div>
-          <h2 className="font-semibold text-gray-800 mb-2">ピクセル化</h2>
+          <h3 className="font-semibold text-gray-800 mb-2">ピクセル化結果</h3>
           <div className="bg-white rounded-lg shadow-sm p-3 flex justify-center items-center overflow-auto">
             {/* 実寸サイズのキャンバスをスケールCSSで表示幅を抑える */}
             <div
@@ -236,15 +236,15 @@ export default function PixelateImageClient() {
       </div>
 
       {/* 使い方 */}
-      <details className="mt-8 bg-white rounded-lg p-4 shadow-sm">
-        <summary className="cursor-pointer font-semibold text-gray-800">使い方</summary>
+      <section className="mt-8 bg-white rounded-lg p-4 shadow-sm">
+        <h3 className="font-semibold text-gray-800 mb-3">使い方・操作方法</h3>
         <ul className="list-disc pl-6 text-sm text-gray-700 mt-2 space-y-1">
           <li>画像を選択（またはドラッグ＆ドロップ）すると自動でピクセル化されます。</li>
           <li>ブロックサイズ（px）を変更すると、粗さが変わります。</li>
           <li>「ピクセル画像をダウンロード」ボタンでPNGとして保存できます。</li>
           <li>処理は端末内で完結します。画像はサーバーに送信されません。</li>
         </ul>
-      </details>
+      </section>
     </div>
   );
 }

@@ -177,8 +177,8 @@ export default function PercentCalcClient() {
           </div>
         ))}
       </div>
-  <details open style={{ fontSize: 14, color: "#444", background: "#f8f8f8", borderRadius: 6, padding: 12, margin: "28px 0 10px" }}>
-        <summary style={{ cursor: "pointer", fontWeight: 600 }}>使い方・例</summary>
+  <section style={{ fontSize: 14, color: "#444", background: "#f8f8f8", borderRadius: 6, padding: 12, margin: "28px 0 10px" }}>
+        <h3 style={{ cursor: "pointer", fontWeight: 600, marginBottom: 12 }}>使い方・計算例</h3>
         <ul style={{ margin: 0, paddingLeft: 20 }}>
           <li>上部タブでカテゴリを切り替え、各計算項目がすべて展開表示されます。</li>
           <li>数値を入力し「計算する」を押すと結果が表示されます。</li>
@@ -193,9 +193,9 @@ export default function PercentCalcClient() {
           <li>【30パーセントオフ計算例】定価10,000円の商品が30%オフの場合：10,000 × (1 - 0.3) = 7,000円。割引額は3,000円。</li>
           <li>【20パーセントオフ計算例】定価5,000円の商品が20%オフの場合：5,000 × (1 - 0.2) = 4,000円。割引額は1,000円。</li>
         </ul>
-      </details>
-      <details style={{ fontSize: 14, color: "#444", background: "#f8f8f8", borderRadius: 6, padding: 12, margin: "18px 0 10px" }}>
-        <summary style={{ cursor: "pointer", fontWeight: 600 }}>30パーセントオフ早見表</summary>
+      </section>
+      <section style={{ fontSize: 14, color: "#444", background: "#f8f8f8", borderRadius: 6, padding: 12, margin: "18px 0 10px" }}>
+        <h3 style={{ cursor: "pointer", fontWeight: 600, marginBottom: 12 }}>30パーセントオフ早見表</h3>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 340 }}>
             <thead>
@@ -218,9 +218,9 @@ export default function PercentCalcClient() {
             </tbody>
           </table>
         </div>
-      </details>
-      <details style={{ fontSize: 14, color: "#444", background: "#f8f8f8", borderRadius: 6, padding: 12, margin: "10px 0 10px" }}>
-        <summary style={{ cursor: "pointer", fontWeight: 600 }}>20パーセントオフ早見表</summary>
+      </section>
+      <section style={{ fontSize: 14, color: "#444", background: "#f8f8f8", borderRadius: 6, padding: 12, margin: "10px 0 10px" }}>
+        <h3 style={{ cursor: "pointer", fontWeight: 600, marginBottom: 12 }}>20パーセントオフ早見表</h3>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 340 }}>
             <thead>
@@ -243,7 +243,7 @@ export default function PercentCalcClient() {
             </tbody>
           </table>
         </div>
-      </details>
+      </section>
       
      </div>
   );
