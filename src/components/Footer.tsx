@@ -7,6 +7,7 @@ export default function Footer() {
         <div style={{ marginBottom: 8 }}>
           <Link href="/image" style={{ color: "#0070f3", textDecoration: "underline", marginRight: 16 }}>画像ツール</Link>
           <Link href="/math" style={{ color: "#0070f3", textDecoration: "underline" }}>数学ツール</Link>
+          <Link href="/string" style={{ color: "#0070f3", textDecoration: "underline", marginLeft: 16 }}>文字列ツール</Link>
         </div>
         <div>© {new Date().getFullYear()} MajiTool</div>
       </div>

@@ -32,10 +32,14 @@ export default async function Home() {
     },
     { name: "パーセント計算", description: "割合・増減・割引などに対応", link: "/math/percent" },
     { name: "パスワード生成", description: "安全なランダムパスワードを作成", link: "/math/random-password" },
-    {
+
+  ] as const;
+  const stringTools = [
+    { name: "AIコンテンツ検出器", description: "テキストがAI生成かを分析", link: "/string/ai-detector" },
+  {
       name:"Markdown オンライン編集ツール",
       description: "リアルタイムプレビュー付きのシンプルな Markdown エディタ。",
-      link: "/math/markdown",
+      link: "/string/markdown",
     }
   ] as const;
 
@@ -58,8 +62,6 @@ export default async function Home() {
       </div>
 
       <div className="space-y-10">
-
-
         {/* 画像ツール */}
         <section>
           <div className="flex items-end justify-between mb-4">
@@ -68,6 +70,21 @@ export default async function Home() {
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {imageTools.map(t => (
+              <Link key={t.link} href={t.link} className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="text-xl font-semibold text-gray-800">{t.name}</div>
+                <div className="text-gray-600 mt-1">{t.description}</div>
+              </Link>
+            ))}
+          </div>
+        </section>
+        {/* 文字列ツール */}
+        <section>
+          <div className="flex items-end justify-between mb-4">
+            <h2 className="text-2xl font-bold text-gray-900">文字列ツール</h2>
+            <Link href="/string" className="text-sm text-blue-600 hover:underline">すべて見る →</Link>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {stringTools.map(t => (
               <Link key={t.link} href={t.link} className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
                 <div className="text-xl font-semibold text-gray-800">{t.name}</div>
                 <div className="text-gray-600 mt-1">{t.description}</div>

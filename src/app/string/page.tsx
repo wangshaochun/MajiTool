@@ -4,36 +4,33 @@ import type { Metadata } from "next";
 import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
-  title: "数学ツール一覧 ",
-  description: "パーセント計算、パスワード生成などの数学関連ツールの一覧です。",
+  title: "文字列ツール ",
+  description: "文字列のエンコード・デコード、AIコンテンツ検出などの文字列関連ツールの一覧です。",
   alternates: {
-    canonical: 'https://maji-tool.com/math'
+    canonical: 'https://maji-tool.com/string'
   },
   openGraph: {
-    title: "数学ツール一覧 ",
-    description: "パーセント計算、パスワード生成などの数学関連ツールの一覧です。",
-    url: "https://maji-tool.com/math",
+    title: "文字列ツール一覧 ",
+    description: "文字列のエンコード・デコード、AIコンテンツ検出などの文字列関連ツールの一覧です。",
+    url: "https://maji-tool.com/string",
     siteName: "MajiTool",
     locale: "ja_JP",
     type: "website"
   }
 };
 
-const mathTools = [
+const mathTools = [ 
   {
-    name: "パーセント計算",
-    description: "割合、増減、割引など多用途のパーセント計算。",
-    link: "/math/percent",
-  },
+    name:"Markdown オンライン編集ツール",
+    description: "リアルタイムプレビュー付きのシンプルな Markdown エディタ。",
+    link: "/string/markdown",
+  }
+  ,
   {
-    name: "パスワード生成",
-    description: "任意の長さ・文字種で安全なランダムパスワードを作成。",
-    link: "/math/random-password",
-  },
-  {
-    name: "死亡時間カウントダウン",
-    description: "日本の平均寿命をもとに、あなたの残り寿命をリアルタイムで表示。",
-    link: "/math/death-countdown",
+    name: "AIコンテンツ検出器",
+    description:
+      "テキストがAIによって生成された可能性をヒューリスティックに推定する無料ツール。日本語特有の特徴も考慮し、繰り返し・語彙多様性・構造規則性・語彙特徴などを多角的に分析します。",
+    link: "/string/ai-detector",
   }
 ];
 
