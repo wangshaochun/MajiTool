@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from "next/navigation";
-import {getPostById } from "@/lib/posts";
+import Link from "next/link";
+import {getPostById, getRelatedPosts } from "@/lib/posts";
 import Markdown from "@/components/Markdown";
 import ShareButtons from "@/components/ShareButtons";
 
@@ -57,11 +58,20 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function BlogDetailPage({ params }: Params) {
   let post = null as Awaited<ReturnType<typeof getPostById>>;
+  let relatedPosts = [] as Awaited<ReturnType<typeof getRelatedPosts>>;
   try {
     const resolvedParams = await params;
     const id = Number(resolvedParams.id);
     if (Number.isNaN(id)) return notFound();
     post = await getPostById(id);
+    if (post) {
+      // 获取相关文章
+      try {
+        relatedPosts = await getRelatedPosts(post.title, post.id, 15);
+      } catch (e) {
+        console.error("Failed to load related posts", e);
+      }
+    }
   } catch (e) {
     console.error("Failed to load post", e);
   }
@@ -76,10 +86,27 @@ export default async function BlogDetailPage({ params }: Params) {
       </div>
       <div className="markdown-body">
         <Markdown content={post.content_md} />
-      </div>
+      </div> 
       <div className="not-prose">
         <ShareButtons title={post.title} />
       </div>
+      {/* 相关文章列表 */}
+      {relatedPosts.length > 0 && (
+        <div className="not-prose mt-12 pt-8 border-t border-gray-200">
+          <h2 className="text-2xl font-bold mb-4">相关文章</h2>
+          <ul className="space-y-4">
+            {relatedPosts.map((p) => (
+              <li key={p.id} className="bg-white p-4 rounded shadow-sm hover:shadow-md transition-shadow">
+                <Link href={`/blog/${p.id}`} className="block">
+                  <h3 className="text-xl font-semibold text-blue-600 hover:underline">{p.title}</h3>
+                </Link>
+                {p.excerpt && <p className="text-gray-600 mt-1">{p.excerpt}</p>}
+                <div className="text-sm text-gray-400 mt-2">{new Date(p.created_at).toISOString()}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </article>
   );
 }

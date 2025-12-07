@@ -114,3 +114,31 @@ export async function deletePost(id: number): Promise<boolean> {
   const count = (res as { rowCount?: number }).rowCount ?? 0;
   return count > 0;
 }
+
+export async function getRelatedPosts(title: string, excludeId: number, limit = 15): Promise<PostListItem[]> {
+ 
+  // 先尝试启用 pg_trgm 扩展（如果尚未启用）
+  try {
+    await query('CREATE EXTENSION IF NOT EXISTS pg_trgm');
+  } catch (e) {
+    // 如果无法启用扩展（可能是权限问题），使用降级方案
+    console.warn('Failed to enable pg_trgm extension, using fallback method:', e); 
+  } 
+  // 尝试使用 similarity 函数
+  try {
+    const sql = `
+      SELECT id, title, excerpt, to_char(created_at, 'YYYY-MM-DD"T"HH24:MI:SSZ') AS created_at,
+             blog.similarity(title, $1) AS sim
+      FROM blog.posts
+      WHERE blog.similarity(title, $1) > 0.3 
+      ORDER BY sim DESC
+      LIMIT $2
+    `;
+    const { rows } = await query<PostListItem & { sim: number }>(sql, [title ,  limit]); 
+    return rows.map(({ sim, ...rest }) => rest);
+  } catch (e) {
+    // 如果 similarity 函数仍然不可用，使用降级方案
+    console.warn('similarity function not available, using fallback method:', e);
+    return [];
+  }
+} 
