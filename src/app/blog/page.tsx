@@ -19,13 +19,34 @@ export const metadata: Metadata = {
 
 export const revalidate = 0;
 
-export default async function BlogListPage() {
+const PAGE_SIZE = 40;
+const TOTAL_PAGES = 20;
+const PAGE_NUMBERS = Array.from({ length: TOTAL_PAGES }, (_, idx) => idx + 1);
+
+export default async function BlogListPage({
+  searchParams,
+}: {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const resolvedSearchParams = await searchParams;
+  const pageParam = Array.isArray(resolvedSearchParams?.page)
+    ? resolvedSearchParams?.page[0]
+    : resolvedSearchParams?.page;
+  const parsedPage = Number.parseInt(pageParam ?? "1", 10);
+  const currentPage = Number.isFinite(parsedPage)
+    ? Math.min(Math.max(parsedPage, 1), TOTAL_PAGES)
+    : 1;
+  const offset = (currentPage - 1) * PAGE_SIZE;
+
   let posts = [] as Awaited<ReturnType<typeof getPosts>>;
   try {
-    posts = await getPosts(50, 0);
+    posts = await getPosts(PAGE_SIZE, offset);
   } catch (e) {
     console.error("Failed to load posts", e);
   }
+
+  const paginationHref = (pageNumber: number) =>
+    pageNumber === 1 ? "/blog" : `/blog?page=${pageNumber}`;
 
   return (
     <div>
@@ -45,6 +66,25 @@ export default async function BlogListPage() {
           ))}
         </ul>
       )}
+      <nav className="mt-8 flex flex-wrap gap-2" aria-label="ページナビゲーション">
+        {PAGE_NUMBERS.map((pageNumber) => {
+          const isActive = pageNumber === currentPage;
+          return (
+            <Link
+              key={pageNumber}
+              href={paginationHref(pageNumber)}
+              className={`min-w-[2.5rem] rounded border px-3 py-1 text-center text-sm ${
+                isActive
+                  ? "border-blue-600 bg-blue-600 text-white"
+                  : "border-gray-300 bg-white text-gray-700 hover:border-blue-400 hover:text-blue-600"
+              }`}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {pageNumber}
+            </Link>
+          );
+        })}
+      </nav>
     </div>
   );
 }
