@@ -28,13 +28,13 @@ export async function POST(req: NextRequest) {
     return json({ error: "INVALID_JSON" }, { status: 400 });
   }
 
-  const {title, content_md, excerpt }: Partial<CreatePostInput> = (body ?? {}) as Partial<CreatePostInput>;
+  const {title, content_md, excerpt, url, tags }: Partial<CreatePostInput> = (body ?? {}) as Partial<CreatePostInput>;
   if (!title || !content_md) {
     return json({ error: "MISSING_FIELDS", required: ["title", "content_md"] }, { status: 400 });
   }
 
   try {
-    const post = await createPost({ title, content_md, excerpt: excerpt ?? null });
+    const post = await createPost({ title, content_md, excerpt: excerpt ?? null , url: url ?? '', tags: tags ?? '' });
     return json({ data: post }, { status: 201 });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);

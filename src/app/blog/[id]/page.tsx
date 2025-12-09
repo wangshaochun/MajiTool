@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import {getPostById, getRelatedPosts } from "@/lib/posts";
+import {getPostById, getRelatedPosts, getRelatedWebPosts } from "@/lib/posts";
 import Markdown from "@/components/Markdown";
 import ShareButtons from "@/components/ShareButtons";
 
@@ -59,15 +59,22 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 export default async function BlogDetailPage({ params }: Params) {
   let post = null as Awaited<ReturnType<typeof getPostById>>;
   let relatedPosts = [] as Awaited<ReturnType<typeof getRelatedPosts>>;
+  let webPosts = [] as Awaited<ReturnType<typeof getRelatedWebPosts>>;
+
   try {
     const resolvedParams = await params;
     const id = Number(resolvedParams.id);
     if (Number.isNaN(id)) return notFound();
     post = await getPostById(id);
     if (post) {
-      // 获取相关文章
+      // 関連記事
       try {
-        relatedPosts = await getRelatedPosts(post.title, post.id, 15);
+        const [related, web] = await Promise.all([
+          getRelatedPosts(post.title, post.id, 15),
+          getRelatedWebPosts(post.title, 5)
+        ]);
+        relatedPosts = related;
+        webPosts = web;
       } catch (e) {
         console.error("Failed to load related posts", e);
       }
@@ -78,35 +85,75 @@ export default async function BlogDetailPage({ params }: Params) {
   if (!post) return notFound();
 
   return (
-    <article className="prose prose-slate max-w-none">
-      <h1 className="mb-2">{post.title}</h1>
-      {/* {post.excerpt && <p className="text-gray-600 not-prose">{post.excerpt}</p>} */}
-      <div className="text-sm text-gray-400 not-prose mb-6">
-        公開日 {new Date(post.created_at).toISOString()}
-      </div>
-      <div className="markdown-body">
-        <Markdown content={post.content_md} />
-      </div> 
-      <div className="not-prose">
-        <ShareButtons title={post.title} />
-      </div>
-      {/* 相关文章列表 */}
-      {relatedPosts.length > 0 && (
-        <div className="not-prose mt-12 pt-8 border-t border-gray-200">
-          <h2 className="text-2xl font-bold mb-4">相关文章</h2>
-          <ul className="space-y-4">
-            {relatedPosts.map((p) => (
-              <li key={p.id} className="bg-white p-4 rounded shadow-sm hover:shadow-md transition-shadow">
-                <Link href={`/blog/${p.id}`} className="block">
-                  <h3 className="text-xl font-semibold text-blue-600 hover:underline">{p.title}</h3>
-                </Link>
-                {p.excerpt && <p className="text-gray-600 mt-1">{p.excerpt}</p>}
-                <div className="text-sm text-gray-400 mt-2">{new Date(p.created_at).toISOString()}</div>
-              </li>
-            ))}
-          </ul>
+    <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
+      <article className="prose prose-slate max-w-none flex-1 bg-white p-6 rounded-lg shadow-sm min-w-0">
+        <h1 className="mb-6 text-3xl md:text-3xl font-bold leading-tight">{post.title}</h1>
+        <div className="text-sm text-gray-400 not-prose mb-6">
+          公開日 {new Date(post.created_at).toISOString()}
         </div>
-      )}
-    </article>
+        <div className="markdown-body">
+          <Markdown content={post.content_md} />
+        </div> 
+        <div className="not-prose">
+          <ShareButtons title={post.title} />
+        </div>
+        {/* 関連記事 */}
+        {relatedPosts.length > 0 && (
+          <div className="not-prose mt-12 pt-8 border-t border-gray-200">
+            <h3 className="text-2xl font-bold mb-4">関連記事</h3>
+            <ul className="space-y-4">
+              {relatedPosts.map((p) => (
+                <li key={p.id} className="bg-white p-4 rounded shadow-sm hover:shadow-md transition-shadow">
+                  <Link href={`/blog/${p.id}`} className="block">
+                    <h3 className="text-xl font-semibold text-blue-600 hover:underline">{p.title}</h3>
+                  </Link>
+                  {p.excerpt && <p className="text-gray-600 mt-1">{p.excerpt}</p>}
+                  <div className="text-sm text-gray-400 mt-2">{new Date(p.created_at).toISOString()}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </article>
+
+      <aside className="w-full lg:w-70 flex-shrink-0 space-y-6">
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <h3 className="font-bold text-lg mb-4 text-gray-800">タグ</h3>
+            <div className="flex flex-wrap gap-2">
+                {post.tags ? post.tags.split(',').map(tag => (
+                    <span key={tag} className="bg-blue-50 px-3 py-1 rounded-full text-sm text-blue-600 hover:bg-blue-100 transition-colors">
+                        {tag.trim()}
+                    </span>
+                )) : <span className="text-gray-400 text-sm">タグなし</span>}
+            </div>
+        </div>
+
+        {post.url && (
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 className="font-bold text-lg mb-4 text-gray-800">参照元</h3>
+                <a href={post.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline break-all text-sm block">
+                    {post.url}
+                </a>
+            </div>
+        )}
+
+        {webPosts.length > 0 && (
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 className="font-bold text-lg mb-4 text-gray-800">おすすめの外部記事</h3>
+                <ul className="space-y-4">
+                    {webPosts.map(wp => (
+                        <li key={wp.id} className="group">
+                            <a href={wp.url} target="_blank" rel="noopener noreferrer" className="block">
+                                <div className="text-sm font-medium text-gray-800 group-hover:text-blue-600 transition-colors mb-1">
+                                    {wp.title}
+                                </div>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        )}
+      </aside>
+    </div>
   );
 }
