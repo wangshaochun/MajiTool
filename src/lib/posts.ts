@@ -144,11 +144,11 @@ export async function getRelatedPosts(title: string, excludeId: number, limit = 
       SELECT id, title, excerpt, to_char(created_at, 'YYYY-MM-DD"T"HH24:MI:SSZ') AS created_at,
              blog.similarity(title, $1) AS sim
       FROM blog.posts
-      WHERE blog.similarity(title, $1) > 0.3 
+      WHERE blog.similarity(title, $1) > 0.2 AND id <> $2
       ORDER BY sim DESC
-      LIMIT $2
+      LIMIT $3
     `;
-    const { rows } = await query<PostListItem & { sim: number }>(sql, [title ,  limit]); 
+    const { rows } = await query<PostListItem & { sim: number }>(sql, [title ,  excludeId, limit]); 
     return rows.map(({ sim, ...rest }) => rest);
   } catch (e) {
     // 如果 similarity 函数仍然不可用，使用降级方案

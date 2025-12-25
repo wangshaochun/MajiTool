@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from "next/link";
 import { getPosts } from "@/lib/posts";
+import { stripHtml } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: 'ブログ',
@@ -60,7 +61,7 @@ export default async function BlogListPage({
               <Link href={`/blog/${p.id}`} className="block">
                 <h3 className="text-xl font-semibold text-blue-600 hover:underline">{p.title}</h3>
               </Link>
-              {p.excerpt && <p className="text-gray-600 mt-1">{p.excerpt}</p>}
+              {p.excerpt && <p className="text-gray-600 mt-1">{stripHtml(p.excerpt)}</p>}
               <div className="text-sm text-gray-400 mt-2">{new Date(p.created_at).toISOString()}</div>
             </li>
           ))}

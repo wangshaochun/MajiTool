@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {getPostById, getRelatedPosts, getRelatedWebPosts } from "@/lib/posts";
+import { stripHtml } from "@/lib/utils";
 import Markdown from "@/components/Markdown";
 import ShareButtons from "@/components/ShareButtons";
 
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     }
     
     // コンテンツから最初の150文字程度を抽出して説明文に使用
-    const description = post.excerpt || post.content_md.replace(/[#*`]/g, '').substring(0, 150) + '...';
+    const description = (post.excerpt ? stripHtml(post.excerpt) : post.content_md.replace(/[#*`]/g, '')).substring(0, 150) + '...';
     
     return {
       title: post.title,
@@ -107,7 +108,7 @@ export default async function BlogDetailPage({ params }: Params) {
                   <Link href={`/blog/${p.id}`} className="block">
                     <h3 className="text-xl font-semibold text-blue-600 hover:underline">{p.title}</h3>
                   </Link>
-                  {p.excerpt && <p className="text-gray-600 mt-1">{p.excerpt}</p>}
+                  {p.excerpt && <p className="text-gray-600 mt-1">{stripHtml(p.excerpt)}</p>}
                   <div className="text-sm text-gray-400 mt-2">{new Date(p.created_at).toISOString()}</div>
                 </li>
               ))}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from "next/link";
 import { getPosts } from "@/lib/posts";
+import { stripHtml } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: 'MajiTool - オンラインツールハブ',
@@ -123,7 +124,7 @@ export default async function Home() {
                   <Link href={`/blog/${p.id}`} className="text-lg font-semibold text-blue-600 hover:underline">
                     {p.title}
                   </Link>
-                  {p.excerpt && <p className="text-gray-600 mt-1 line-clamp-2">{p.excerpt}</p>}
+                  {p.excerpt && <p className="text-gray-600 mt-1 line-clamp-2">{stripHtml(p.excerpt)}</p>}
                   <div className="text-sm text-gray-400 mt-2">{new Date(p.created_at).toLocaleDateString()}</div>
                 </li>
               ))}
