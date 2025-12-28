@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from "next/link";
+import Image from "next/image";
 import { getPosts } from "@/lib/posts";
 import { stripHtml } from "@/lib/utils";
 
@@ -22,25 +23,29 @@ export const revalidate = 0;
 
 export default async function Home() {
   const imageTools = [
-    { name: "画像ピクセル化", description: "ドット絵風に変換（粗さ調整可）", link: "/image/pixelate" },
-    { name: "画像圧縮", description: "品質と形式（WEBP/JPEG）で容量削減", link: "/image/compress" },
+    { name: "画像ピクセル化", description: "ドット絵風に変換（粗さ調整可）", link: "/image/pixelate", icon: "/images/pixelate.svg" },
+    { name: "画像圧縮", description: "品質と形式（WEBP/JPEG）で容量削減", link: "/image/compress", icon: "/images/compress.svg" },
   ] as const;
   const mathTools = [
     {
       name: "死亡時間カウントダウン",
       description: "日本の平均寿命をもとに、あなたの残り寿命をリアルタイムで表示。",
       link: "/math/death-countdown",
+      icon: "/images/death.svg"
     },
-    { name: "パーセント計算", description: "割合・増減・割引などに対応", link: "/math/percent" },
-    { name: "パスワード生成", description: "安全なランダムパスワードを作成", link: "/math/random-password" },
-
+    { name: "体脂肪率計算", 
+      description: "BMIと年齢・性別から推定される体脂肪率を計算。",
+      link: "/math/body-fat",
+      icon: "/images/body-fat.svg"
+    },
   ] as const;
   const stringTools = [
-    { name: "AIコンテンツ検出器", description: "テキストがAI生成かを分析", link: "/string/ai-detector" },
+    { name: "AIコンテンツ検出器", description: "テキストがAI生成かを分析", link: "/string/ai-detector", icon: "/images/ai-detector.svg" },
   {
       name:"Markdown オンライン編集ツール",
       description: "リアルタイムプレビュー付きのシンプルな Markdown エディタ。",
       link: "/string/markdown",
+      icon: "/images/markdown.svg"
     }
   ] as const;
 
@@ -71,9 +76,14 @@ export default async function Home() {
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {imageTools.map(t => (
-              <Link key={t.link} href={t.link} className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-xl font-semibold text-gray-800">{t.name}</div>
-                <div className="text-gray-600 mt-1">{t.description}</div>
+              <Link key={t.link} href={t.link} className="flex items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="mr-4 flex-shrink-0">
+                  <Image src={t.icon} alt={t.name} width={60} height={60} />
+                </div>
+                <div>
+                  <div className="text-xl font-semibold text-gray-800">{t.name}</div>
+                  <div className="text-gray-600 mt-1">{t.description}</div>
+                </div>
               </Link>
             ))}
           </div>
@@ -86,9 +96,14 @@ export default async function Home() {
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {stringTools.map(t => (
-              <Link key={t.link} href={t.link} className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-xl font-semibold text-gray-800">{t.name}</div>
-                <div className="text-gray-600 mt-1">{t.description}</div>
+              <Link key={t.link} href={t.link} className="flex items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="mr-4 flex-shrink-0">
+                  <Image src={t.icon} alt={t.name} width={60} height={60} />
+                </div>
+                <div>
+                  <div className="text-xl font-semibold text-gray-800">{t.name}</div>
+                  <div className="text-gray-600 mt-1">{t.description}</div>
+                </div>
               </Link>
             ))}
           </div>
@@ -102,9 +117,14 @@ export default async function Home() {
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {mathTools.map(t => (
-              <Link key={t.link} href={t.link} className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-xl font-semibold text-gray-800">{t.name}</div>
-                <div className="text-gray-600 mt-1">{t.description}</div>
+              <Link key={t.link} href={t.link} className="flex items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="mr-4 flex-shrink-0">
+                  <Image src={t.icon} alt={t.name} width={60} height={60} />
+                </div>
+                <div>
+                  <div className="text-xl font-semibold text-gray-800">{t.name}</div>
+                  <div className="text-gray-600 mt-1">{t.description}</div>
+                </div>
               </Link>
             ))}
           </div>

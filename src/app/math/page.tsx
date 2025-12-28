@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
 import ShareButtons from "@/components/ShareButtons";
+import { PercentIcon, PasswordIcon, DeathIcon, BodyFatIcon } from "@/components/MathIcons";
 
 export const metadata: Metadata = {
   title: "数学ツール一覧 ",
@@ -24,17 +25,26 @@ const mathTools = [
     name: "パーセント計算",
     description: "割合、増減、割引など多用途のパーセント計算。",
     link: "/math/percent",
+    icon: <PercentIcon />,
   },
   {
     name: "パスワード生成",
     description: "任意の長さ・文字種で安全なランダムパスワードを作成。",
     link: "/math/random-password",
+    icon: <PasswordIcon />,
   },
   {
     name: "死亡時間カウントダウン",
     description: "日本の平均寿命をもとに、あなたの残り寿命をリアルタイムで表示。",
     link: "/math/death-countdown",
-  }
+    icon: <DeathIcon />,
+  },
+  {
+    name: "体脂肪率計算",
+    description: "BMIと年齢・性別から推定される体脂肪率を計算。",
+    link: "/math/body-fat",
+    icon: <BodyFatIcon />,
+  },
 ];
 
 export default function MathIndexPage() {
@@ -46,10 +56,15 @@ export default function MathIndexPage() {
           <Link
             href={tool.link}
             key={tool.link}
-            className="block p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            className="flex items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
           >
-            <h2 className="text-xl font-semibold text-gray-800">{tool.name}</h2>
-            <p className="text-gray-600 mt-1">{tool.description}</p>
+            <div className="mr-4 flex-shrink-0">
+              {tool.icon}
+            </div>
+            <div>
+              <h2 className="text-xl font-semibold text-gray-800">{tool.name}</h2>
+              <p className="text-gray-600 mt-1">{tool.description}</p>
+            </div>
           </Link>
         ))}
       </div>

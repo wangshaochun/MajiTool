@@ -1,0 +1,25 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#A78BFA" />
+      <stop offset="100%" stopColor="#7C3AED" />
+    </linearGradient>
+    <filter id="aiShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+      <feOffset dx="2" dy="4" result="offsetblur" />
+      <feComponentTransfer><feFuncA type="linear" slope="0.3" /></feComponentTransfer>
+      <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+  <circle cx="60" cy="60" r="50" fill="white" fillOpacity="0.8" filter="url(#aiShadow)" />
+  <g filter="url(#aiShadow)">
+    <rect x="35" y="45" width="50" height="40" rx="15" fill="url(#aiGrad)" />
+    <rect x="45" y="40" width="10" height="10" rx="2" fill="#C4B5FD" />
+    <rect x="65" y="40" width="10" height="10" rx="2" fill="#C4B5FD" />
+    <circle cx="48" cy="65" r="4" fill="white" />
+    <circle cx="72" cy="65" r="4" fill="white" />
+    <path d="M55 75H65" stroke="white" strokeWidth="3" strokeLinecap="round" />
+  </g>
+  <path d="M60 30V45" stroke="#7C3AED" strokeWidth="4" strokeLinecap="round" />
+  <circle cx="60" cy="28" r="4" fill="#7C3AED" />
+</svg>

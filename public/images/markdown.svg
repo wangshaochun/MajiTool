@@ -1,0 +1,22 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mdGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#4ADE80" />
+      <stop offset="100%" stopColor="#16A34A" />
+    </linearGradient>
+    <filter id="mdShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+      <feOffset dx="2" dy="4" result="offsetblur" />
+      <feComponentTransfer><feFuncA type="linear" slope="0.3" /></feComponentTransfer>
+      <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+  <circle cx="60" cy="60" r="50" fill="white" fillOpacity="0.8" filter="url(#mdShadow)" />
+  <g filter="url(#mdShadow)">
+    <rect x="35" y="35" width="50" height="50" rx="8" fill="url(#mdGrad)" />
+    <path d="M45 50L50 45L55 50M45 60H55M65 45V65L75 55L65 45Z" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+  </g>
+  <circle cx="52" cy="75" r="2" fill="white" />
+  <circle cx="68" cy="75" r="2" fill="white" />
+  <path d="M58 80C58 80 59 81 60 81C61 81 62 80 62 80" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+</svg>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import RandomPasswordClient from "@/components/RandomPasswordClient";
 import ShareButtons from "@/components/ShareButtons";
+import { PasswordIcon } from "@/components/MathIcons";
 
 export const metadata: Metadata = {
   title: "ランダムパスワード生成器 ",
@@ -28,9 +29,20 @@ export const metadata: Metadata = {
 
 export default function RandomPasswordPage() {
   return (
-    <>
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="flex flex-col md:flex-row items-center mb-8">
+        <div className="mb-4 md:mb-0 md:mr-6">
+          <PasswordIcon />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">ランダムパスワード生成器</h1>
+          <p className="text-gray-600 mt-2">
+            安全で強力なパスワードを瞬時に生成します。長さや文字種を自由にカスタマイズ可能です。
+          </p>
+        </div>
+      </div>
       <RandomPasswordClient />
       <ShareButtons title="ランダムパスワード生成器" />
-    </>
+    </div>
   );
 }

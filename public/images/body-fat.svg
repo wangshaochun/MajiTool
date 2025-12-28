@@ -1,0 +1,23 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#10B981" />
+      <stop offset="100%" stopColor="#3B82F6" />
+    </linearGradient>
+    <filter id="softShadowFat" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+      <feOffset dx="2" dy="4" result="offsetblur" />
+      <feComponentTransfer><feFuncA type="linear" slope="0.3" /></feComponentTransfer>
+      <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+  <circle cx="60" cy="60" r="50" fill="white" fillOpacity="0.8" filter="url(#softShadowFat)" />
+  <g filter="url(#softShadowFat)">
+    <rect x="35" y="40" width="50" height="50" rx="12" fill="url(#fatGrad)" fillOpacity="0.1" stroke="url(#fatGrad)" strokeWidth="6" />
+    <rect x="45" y="48" width="30" height="15" rx="4" fill="white" />
+    <path d="M60 63V53" stroke="url(#fatGrad)" strokeWidth="3" strokeLinecap="round" />
+  </g>
+  <circle cx="52" cy="75" r="2" fill="#065F46" />
+  <circle cx="68" cy="75" r="2" fill="#065F46" />
+  <path d="M56 82C56 82 58 85 60 85C62 85 64 82 64 82" stroke="#065F46" strokeWidth="2" strokeLinecap="round" />
+</svg>
