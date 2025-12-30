@@ -71,7 +71,7 @@ export default async function BlogDetailPage({ params }: Params) {
       // 関連記事
       try {
         const [related, web] = await Promise.all([
-          getRelatedPosts(post.title, post.id, 15),
+          getRelatedPosts(post.title, post.id, 12),
           getRelatedWebPosts(post.title, 5)
         ]);
         relatedPosts = related;
@@ -98,26 +98,9 @@ export default async function BlogDetailPage({ params }: Params) {
         <div className="not-prose">
           <ShareButtons title={post.title} />
         </div>
-        {/* 関連記事 */}
-        {relatedPosts.length > 0 && (
-          <div className="not-prose mt-12 pt-8 border-t border-gray-200">
-            <h3 className="text-2xl font-bold mb-4">関連記事</h3>
-            <ul className="space-y-4">
-              {relatedPosts.map((p) => (
-                <li key={p.id} className="bg-white p-4 rounded shadow-sm hover:shadow-md transition-shadow">
-                  <Link href={`/blog/${p.id}`} className="block">
-                    <h3 className="text-xl font-semibold text-blue-600 hover:underline">{p.title}</h3>
-                  </Link>
-                  {p.excerpt && <p className="text-gray-600 mt-1">{stripHtml(p.excerpt)}</p>}
-                  <div className="text-sm text-gray-400 mt-2">{new Date(p.created_at).toISOString()}</div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </article>
 
-      <aside className="w-full lg:w-70 flex-shrink-0 space-y-6">
+      <aside className="w-full lg:w-[30%] flex-shrink-0 space-y-6">
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
             <h3 className="font-bold text-lg mb-4 text-gray-800">タグ</h3>
             <div className="flex flex-wrap gap-2">
@@ -135,6 +118,24 @@ export default async function BlogDetailPage({ params }: Params) {
                 <a href={post.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline break-all text-sm block">
                     {post.url}
                 </a>
+            </div>
+        )}
+
+        {relatedPosts.length > 0 && (
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 className="font-bold text-lg mb-4 text-gray-800">関連記事</h3>
+                <ul className="space-y-4">
+                    {relatedPosts.map((p) => (
+                        <li key={p.id} className="group">
+                            <Link href={`/blog/${p.id}`} className="block">
+                                <div className="text-sm font-medium text-gray-800 group-hover:text-blue-600 transition-colors mb-1">
+                                    {p.title}
+                                </div>
+                            </Link>
+                            <div className="text-xs text-gray-400">{new Date(p.created_at).toLocaleDateString()}</div>
+                        </li>
+                    ))}
+                </ul>
             </div>
         )}
 
