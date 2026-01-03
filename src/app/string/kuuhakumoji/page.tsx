@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import KuuhakumojiClient from "@/components/KuuhakumojiClient";
 
 export const metadata: Metadata = {
@@ -64,7 +65,7 @@ export default function KuuhakumojiPage() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-800 flex items-center justify-center gap-4">
-        <img src="/images/kuuhakumoji.svg" alt="" className="w-10 h-10 md:w-12 md:h-12" />
+        <Image src="/images/kuuhakumoji.svg" alt="" width={48} height={48} className="w-10 h-10 md:w-12 md:h-12" />
         空白文字コピーツール
       </h1>
       <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">

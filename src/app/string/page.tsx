@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import ShareButtons from "@/components/ShareButtons";
 
@@ -60,7 +61,7 @@ export default function MathIndexPage() {
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-blue-50 rounded-lg">
-                <img src={tool.icon} alt="" className="w-6 h-6" />
+                <Image src={tool.icon} alt="" width={24} height={24} className="w-6 h-6" />
               </div>
               <h2 className="text-xl font-semibold text-gray-800">{tool.name}</h2>
             </div>

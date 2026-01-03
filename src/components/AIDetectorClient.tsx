@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import Image from "next/image";
 
 type DetectionResult = {
   probability: number;
@@ -539,7 +540,7 @@ export default function AIDetectorClient() {
     <div className="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-md">
       <div className="text-center mb-6">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-3">
-          <img src="/images/ai-detector.svg" alt="" className="w-8 h-8 md:w-10 md:h-10" />
+          <Image src="/images/ai-detector.svg" alt="" width={40} height={40} className="w-8 h-8 md:w-10 md:h-10" />
           AI コンテンツ検出器
         </h1>
         <p className="text-gray-600 text-sm">

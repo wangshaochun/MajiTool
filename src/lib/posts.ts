@@ -149,6 +149,7 @@ export async function getRelatedPosts(title: string, excludeId: number, limit = 
       LIMIT $3
     `;
     const { rows } = await query<PostListItem & { sim: number }>(sql, [title ,  excludeId, limit]); 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     return rows.map(({ sim, ...rest }) => rest);
   } catch (e) {
     // 如果 similarity 函数仍然不可用，使用降级方案

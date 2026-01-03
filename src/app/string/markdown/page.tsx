@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import Image from "next/image";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -162,7 +163,7 @@ export default function MarkdownEditor() {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
-        <img src="/images/markdown.svg" alt="" className="w-8 h-8" />
+        <Image src="/images/markdown.svg" alt="" width={32} height={32} className="w-8 h-8" />
         Markdown エディタ
       </h1>
       <div

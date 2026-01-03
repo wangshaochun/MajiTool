@@ -6,7 +6,6 @@ import jsPDF from "jspdf";
 
 const ROWS = 20; // Number of characters per column (vertical)
 const COLS = 20; // Number of columns per page
-const CHARS_PER_PAGE = ROWS * COLS;
 
 type PageData = string[][]; // Array of columns, each column is array of chars
 
@@ -94,28 +93,7 @@ export default function GenkoyoshiClient() {
   const handleDownloadPDF = async () => {
     if (!printRef.current) return;
 
-    const element = printRef.current;
-    const canvas = await html2canvas(element, {
-      scale: 2, // Higher resolution
-      backgroundColor: "#ffffff",
-    });
-
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF({
-      orientation: "landscape", // Genkoyoshi is usually landscape A4 or B4
-      unit: "mm",
-      format: "a4",
-    });
-
-    const imgProps = pdf.getImageProperties(imgData);
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-    // If height exceeds A4, we might need multiple pages in PDF, 
-    // but html2canvas captures the whole scrollable area as one image.
-    // For a proper multi-page PDF, we should render each page div separately.
-    // Let's try to capture each .genkoyoshi-page class element.
-    
+    // Capture each .genkoyoshi-page class element for multi-page PDF
     const pageElements = document.querySelectorAll(".genkoyoshi-page");
     const pdfMulti = new jsPDF({
       orientation: "landscape",
@@ -127,7 +105,8 @@ export default function GenkoyoshiClient() {
       if (i > 0) pdfMulti.addPage();
       
       const pageEl = pageElements[i] as HTMLElement;
-      const pageCanvas = await html2canvas(pageEl, { scale: 2, backgroundColor: "#ffffff" });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const pageCanvas = await html2canvas(pageEl, { scale: 2, backgroundColor: "#ffffff" } as any);
       const pageImgData = pageCanvas.toDataURL("image/png");
       
       // Center image on PDF page

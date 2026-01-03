@@ -7,6 +7,14 @@ import NextImage from "next/image";
 // - ローカル画像を読み込み、ピクセルサイズ（ブロックサイズ）を指定してドット絵風に変換
 // - 変換結果をプレビューし、PNGとしてダウンロード可能
 // - すべてブラウザ上（オフライン）で完結し、サーバーにはアップロードされません
+// Bayer矩阵用于抖动
+const bayerMatrix = [
+  [0, 8, 2, 10],
+  [12, 4, 14, 6],
+  [3, 11, 1, 9],
+  [15, 7, 13, 5]
+];
+
 export default function PixelateImageClient() {
   // 選択された画像のプレビューURL（Object URL）
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -129,14 +137,6 @@ export default function PixelateImageClient() {
     const mid = Math.floor(rValues.length / 2);
     return [rValues[mid], gValues[mid], bValues[mid]];
   }, []);
-
-  // Bayer矩阵用于抖动
-  const bayerMatrix = [
-    [0, 8, 2, 10],
-    [12, 4, 14, 6],
-    [3, 11, 1, 9],
-    [15, 7, 13, 5]
-  ];
 
   // 应用抖动效果
   const applyDithering = useCallback((r: number, g: number, b: number, x: number, y: number) => {
@@ -342,7 +342,7 @@ export default function PixelateImageClient() {
         }
       }
     }
-  }, [blockSize, pixelMode, colorLevels, sharpness, contrast, saturation, antiAlias, showGrid, 
+  }, [blockSize, pixelMode, colorLevels, antiAlias, showGrid, sharpness,
       quantizeColor, getDominantColor, getMedianColor, applyDithering, adjustColor, applySharpen]);
 
   // 画像の読み込み完了・設定変更のたびに再レンダリング

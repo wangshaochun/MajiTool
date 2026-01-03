@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 type BlankChar = {
   name: string;
@@ -29,7 +29,7 @@ export default function KuuhakumojiClient() {
       await navigator.clipboard.writeText(text);
       setCopyStatus(`${label}をコピーしました！`);
       setTimeout(() => setCopyStatus(""), 3000);
-    } catch (err) {
+    } catch {
       setCopyStatus("コピーに失敗しました。");
     }
   };
