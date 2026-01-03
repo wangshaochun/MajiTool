@@ -150,7 +150,12 @@ export default function CompressImageClient() {
 
   return (
     <div className="mx-auto max-w-5xl">
-      <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">画像圧縮ツール</h1>
+      <div className="flex items-center mb-4">
+        <div className="mr-4 flex-shrink-0">
+          <NextImage src="/images/compress.svg" alt="画像圧縮" width={48} height={48} />
+        </div>
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900">画像圧縮ツール</h1>
+      </div>
       <p className="text-gray-600 mb-6">
         画像の見た目を保ちながら容量を削減。品質（圧縮率）と出力形式を調整できます。処理は端末内で完結し、
         サーバーにはアップロードされません。

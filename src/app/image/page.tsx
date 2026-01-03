@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import ShareButtons from "@/components/ShareButtons";
 
@@ -24,11 +25,13 @@ const imageTools = [
     name: "画像ピクセル化",
     description: "画像をドット絵風に変換。ブロックサイズで粗さを調整できます。",
     link: "/image/pixelate",
+    icon: "/images/pixelate.svg",
   },
   {
     name: "画像圧縮",
     description: "品質と形式（WEBP/JPEG）を選んで容量を削減。ブラウザ内で完結。",
     link: "/image/compress",
+    icon: "/images/compress.svg",
   },
 ];
 
@@ -41,10 +44,15 @@ export default function ImageIndexPage() {
           <Link
             href={tool.link}
             key={tool.link}
-            className="block p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            className="flex items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
           >
-            <h2 className="text-xl font-semibold text-gray-800">{tool.name}</h2>
-            <p className="text-gray-600 mt-1">{tool.description}</p>
+            <div className="mr-4 flex-shrink-0">
+              <Image src={tool.icon} alt={tool.name} width={60} height={60} />
+            </div>
+            <div>
+              <h2 className="text-xl font-semibold text-gray-800">{tool.name}</h2>
+              <p className="text-gray-600 mt-1">{tool.description}</p>
+            </div>
           </Link>
         ))}
       </div>

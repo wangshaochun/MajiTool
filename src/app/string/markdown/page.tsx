@@ -161,7 +161,10 @@ export default function MarkdownEditor() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6 text-gray-900">Markdown エディタ</h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
+        <img src="/images/markdown.svg" alt="" className="w-8 h-8" />
+        Markdown エディタ
+      </h1>
       <div
         ref={containerRef}
         onMouseMove={onMouseMove}

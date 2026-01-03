@@ -23,8 +23,17 @@ export const revalidate = 0;
 
 export default async function Home() {
   const imageTools = [
-    { name: "画像ピクセル化", description: "ドット絵風に変換（粗さ調整可）", link: "/image/pixelate", icon: "/images/pixelate.svg" },
-    { name: "画像圧縮", description: "品質と形式（WEBP/JPEG）で容量削減", link: "/image/compress", icon: "/images/compress.svg" },
+    {
+      name: "画像ピクセル化", 
+      description: "ドット絵風に変換（粗さ調整可）", 
+      link: "/image/pixelate",
+      icon: "/images/pixelate.svg" },
+    {
+      name: "画像圧縮",
+      description: "品質と形式（WEBP/JPEG）で容量削減",
+      link: "/image/compress", 
+      icon: "/images/compress.svg" 
+    },
   ] as const;
   const mathTools = [
     {
@@ -38,14 +47,41 @@ export default async function Home() {
       link: "/math/body-fat",
       icon: "/images/body-fat.svg"
     },
+    { name: "パーセント計算", 
+      description: "割合、増減、割引など多用途のパーセント計算。",
+      link: "/math/percent",
+      icon: "/images/percent.svg"
+    },
+    { name: "パスワード生成", 
+      description: "任意の長さ・文字種で安全なランダムパスワードを作成。",
+      link: "/math/password-generator",
+      icon: "/images/password.svg"
+    }
   ] as const;
   const stringTools = [
-    { name: "AIコンテンツ検出器", description: "テキストがAI生成かを分析", link: "/string/ai-detector", icon: "/images/ai-detector.svg" },
-  {
+   { 
+      name: "AIコンテンツ検出器", 
+      description: "テキストがAI生成かを分析", 
+      link: "/string/ai-detector", 
+      icon: "/images/ai-detector.svg"
+    },
+   {
       name:"Markdown オンライン編集ツール",
       description: "リアルタイムプレビュー付きのシンプルな Markdown エディタ。",
       link: "/string/markdown",
       icon: "/images/markdown.svg"
+    },
+    {
+      name: "空白文字コピーツール",
+      description: "SNSやゲーム名に使える空白文字をコピー・生成",
+      link: "/string/kuuhakumoji",
+      icon: "/images/kuuhakumoji.svg"
+    },
+    {
+      name: "原稿用紙エディタ",
+      description: "縦書き・400字詰めの原稿用紙で執筆・印刷・PDF保存",
+      link: "/string/genkoyoshi",
+      icon: "/images/genkoyoshi.svg"
     }
   ] as const;
 

@@ -25,6 +25,31 @@
 				"$tsc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Install PDF deps",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"install",
+				"html2canvas",
+				"jspdf"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Install PDF types",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"install",
+				"-D",
+				"@types/html2canvas",
+				"@types/jspdf"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }

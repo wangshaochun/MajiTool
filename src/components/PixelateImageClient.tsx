@@ -423,7 +423,12 @@ export default function PixelateImageClient() {
   return (
     <div className="mx-auto max-w-5xl">
       {/* タイトル */}
-      <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">画像ピクセル化ツール</h1>
+      <div className="flex items-center mb-4">
+        <div className="mr-4 flex-shrink-0">
+          <NextImage src="/images/pixelate.svg" alt="画像ピクセル化" width={48} height={48} />
+        </div>
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900">画像ピクセル化ツール</h1>
+      </div>
       <p className="text-gray-600 mb-6">
         画像をドット絵風に変換。ブロックサイズ（ピクセルサイズ）を調整して、好みの粗さにできます。
       </p>
